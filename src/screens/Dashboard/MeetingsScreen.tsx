@@ -191,7 +191,7 @@ export default function MeetingsScreen() {
       <View style={styles.header}>
         <View>
           <Text style={styles.title}>Meetings</Text>
-          <Text style={styles.subtitle}>Every call captured — searchable, summarized, ready to act on.</Text>
+          {/* <Text style={styles.subtitle}>Every call captured — searchable, summarized, ready to act on.</Text> */}
         </View>
         <Pressable style={styles.newMeetingButton}>
           <Icon name="plus" size={13} color={colors.card} />

@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { ActivityIndicator, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, Pressable, StyleSheet, Text, View } from 'react-native';
 import { Icon } from '../Icon';
 import { colors } from '../../theme/colors';
 import type { SummaryCard, TranscriptData } from '../../types/meetings';
@@ -119,7 +119,7 @@ export function SummaryPanel({
           </Text>
         </View>
       ) : (
-        <ScrollView style={styles.list}>
+        <View style={styles.list}>
           {cards
             .slice()
             .reverse()
@@ -129,7 +129,7 @@ export function SummaryPanel({
                 <Text style={styles.cardText}>{card.text}</Text>
               </View>
             ))}
-        </ScrollView>
+        </View>
       )}
     </View>
   );
@@ -239,7 +239,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   list: {
-    maxHeight: 420,
+    gap: 0,
   },
   card: {
     borderRadius: 14,

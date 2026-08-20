@@ -21,7 +21,10 @@ export type IconName =
   | 'audio'
   | 'screen'
   | 'play'
-  | 'download';
+  | 'download'
+  | 'chevronRight'
+  | 'edit'
+  | 'copy';
 
 /**
  * Small filled-glyph icon set built entirely from Views (no icon font /
@@ -403,6 +406,90 @@ export function Icon({ name, size = 20, color = '#1E1B1B' }: { name: IconName; c
             }}
           />
           <View style={{ width: s * 0.72, height: Math.max(1.5, s * 0.1), borderRadius: 2, backgroundColor: color, marginTop: s * 0.14 }} />
+        </View>
+      );
+
+    case 'chevronRight':
+      return (
+        <View style={{ width: s, height: s, alignItems: 'center', justifyContent: 'center' }}>
+          <View
+            style={{
+              width: s * 0.42,
+              height: Math.max(1.5, s * 0.14),
+              borderRadius: 2,
+              backgroundColor: color,
+              transform: [{ rotate: '-45deg' }, { translateX: -s * 0.14 }, { translateY: -s * 0.11 }],
+            }}
+          />
+          <View
+            style={{
+              width: s * 0.42,
+              height: Math.max(1.5, s * 0.14),
+              borderRadius: 2,
+              backgroundColor: color,
+              transform: [{ rotate: '45deg' }, { translateX: -s * 0.14 }, { translateY: s * 0.11 }],
+            }}
+          />
+        </View>
+      );
+
+    case 'edit':
+      return (
+        <View style={{ width: s, height: s, alignItems: 'center', justifyContent: 'center' }}>
+          <View
+            style={{
+              width: s * 0.78,
+              height: s * 0.2,
+              borderRadius: 3,
+              backgroundColor: color,
+              transform: [{ rotate: '-45deg' }],
+            }}
+          />
+          <View
+            style={{
+              position: 'absolute',
+              width: 0,
+              height: 0,
+              left: s * 0.08,
+              bottom: s * 0.1,
+              borderTopWidth: s * 0.11,
+              borderRightWidth: s * 0.11,
+              borderTopColor: 'transparent',
+              borderRightColor: color,
+              transform: [{ rotate: '180deg' }],
+            }}
+          />
+        </View>
+      );
+
+    case 'copy':
+      return (
+        <View style={{ width: s, height: s }}>
+          <View
+            style={{
+              position: 'absolute',
+              right: 0,
+              top: 0,
+              width: s * 0.7,
+              height: s * 0.7,
+              borderRadius: s * 0.12,
+              borderWidth: Math.max(1.5, s * 0.09),
+              borderColor: color,
+              opacity: 0.5,
+            }}
+          />
+          <View
+            style={{
+              position: 'absolute',
+              left: 0,
+              bottom: 0,
+              width: s * 0.7,
+              height: s * 0.7,
+              borderRadius: s * 0.12,
+              borderWidth: Math.max(1.5, s * 0.09),
+              borderColor: color,
+            }}
+          />
         </View>
       );
 

@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { ActivityIndicator, Alert, Linking, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
+import { ActivityIndicator, Alert, Linking, Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 import { Icon, type IconName } from '../Icon';
 import { colors } from '../../theme/colors';
 import type { Recording, RecordingType } from '../../types/recordings';
@@ -158,13 +158,15 @@ export function RecordingsPanel({
         />
       </View>
 
-      <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.filterRow}>
+      <View style={styles.filterRow}>
         {FILTER_TABS.map(f => (
           <Pressable key={f.id} style={[styles.filterChip, tab === f.id && styles.filterChipActive]} onPress={() => setTab(f.id)}>
-            <Text style={[styles.filterChipLabel, tab === f.id && styles.filterChipLabelActive]}>{f.label}</Text>
+            <Text style={[styles.filterChipLabel, tab === f.id && styles.filterChipLabelActive]} numberOfLines={1}>
+              {f.label}
+            </Text>
           </Pressable>
         ))}
-      </ScrollView>
+      </View>
 
       {loading ? (
         <ActivityIndicator color={colors.magenta} style={styles.loader} />
@@ -299,27 +301,32 @@ const styles = StyleSheet.create({
     padding: 0,
   },
   filterRow: {
-    gap: 8,
+    flexDirection: 'row',
+    gap: 6,
   },
   filterChip: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
     borderRadius: 999,
-    paddingHorizontal: 14,
-    paddingVertical: 8,
+    paddingHorizontal: 4,
+    paddingVertical: 9,
     backgroundColor: colors.card,
     borderWidth: 1,
     borderColor: colors.inkMuted10,
   },
   filterChipActive: {
-    backgroundColor: colors.ink,
-    borderColor: colors.ink,
+    backgroundColor: colors.magenta,
+    borderColor: colors.magenta,
   },
   filterChipLabel: {
-    fontSize: 11,
+    fontSize: 10,
     fontWeight: '600',
     color: colors.inkMuted60,
   },
   filterChipLabelActive: {
     color: colors.card,
+    fontWeight: '700',
   },
   loader: {
     paddingVertical: 32,

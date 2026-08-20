@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import { ActivityIndicator, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
+import { ActivityIndicator, StyleSheet, Text, TextInput, View } from 'react-native';
 import { Icon } from '../Icon';
 import { colors } from '../../theme/colors';
 import { flattenAndSortTranscripts, type TranscriptData } from '../../types/meetings';
@@ -62,7 +62,7 @@ export function TranscriptPanel({
           <Text style={styles.subtleText}>No transcripts match &quot;{search}&quot;</Text>
         </View>
       ) : (
-        <ScrollView style={styles.list}>
+        <View style={styles.list}>
           {filteredLines.map((line, i) => (
             <View key={i} style={styles.line}>
               <View style={styles.avatar}>
@@ -76,7 +76,7 @@ export function TranscriptPanel({
               </View>
             </View>
           ))}
-        </ScrollView>
+        </View>
       )}
 
       <View style={styles.footer}>
@@ -131,7 +131,7 @@ const styles = StyleSheet.create({
     padding: 0,
   },
   list: {
-    maxHeight: 420,
+    gap: 0,
   },
   line: {
     flexDirection: 'row',

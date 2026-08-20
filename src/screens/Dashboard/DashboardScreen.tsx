@@ -10,6 +10,7 @@ import { colors } from '../../theme/colors';
 import AccountScreen from './AccountScreen';
 import HomeScreen from './HomeScreen';
 import MeetingsScreen from './MeetingsScreen';
+import CalendarScreen from './CalendarScreen';
 
 const WORKSPACE_TABS: TabItem[] = [
   { id: 'home', label: 'Home', icon: 'home' },
@@ -20,7 +21,6 @@ const WORKSPACE_TABS: TabItem[] = [
 ];
 
 const SCREEN_COPY: Record<string, { title: string; description: string }> = {
-  calendar: { title: 'Calendar', description: 'Your connected calendar view is coming soon.' },
   chats: { title: 'Chats', description: 'Conversations with your team will appear here.' },
 };
 
@@ -55,6 +55,8 @@ export default function DashboardScreen() {
           <HomeScreen />
         ) : activeTab === 'meetings' ? (
           <MeetingsScreen />
+        ) : activeTab === 'calendar' ? (
+          <CalendarScreen />
         ) : (
           <PlaceholderScreen {...SCREEN_COPY[activeTab]} />
         )}
