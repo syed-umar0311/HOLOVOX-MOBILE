@@ -63,8 +63,10 @@ export function InfinityLogo({
     const angleTopFromLeft = Math.atan2(topPoint.y - leftCenter.y, topPoint.x - leftCenter.x);
     const angleTopFromRight = Math.atan2(topPoint.y - rightCenter.y, topPoint.x - rightCenter.x);
 
-    const leftPts = ringPoints(leftCenter.x, leftCenter.y, orbitRadius, angleTopFromLeft, -1);
-    const rightPts = ringPoints(rightCenter.x, rightCenter.y, orbitRadius, angleTopFromRight, 1);
+    // Matches the web SVG path's sweep flags: left ring sweep=1 (increasing
+    // angle), right ring sweep=0 (decreasing angle).
+    const leftPts = ringPoints(leftCenter.x, leftCenter.y, orbitRadius, angleTopFromLeft, 1);
+    const rightPts = ringPoints(rightCenter.x, rightCenter.y, orbitRadius, angleTopFromRight, -1);
     const points = [...leftPts, ...rightPts.slice(1)];
 
     return {

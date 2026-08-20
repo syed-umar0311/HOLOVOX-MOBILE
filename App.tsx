@@ -3,15 +3,18 @@
  */
 
 import React from 'react';
-import { SafeAreaView, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { AppNavigator } from './src/navigation/AppNavigator';
+import { AuthProvider } from './src/context/AuthContext';
 import { colors } from './src/theme/colors';
 
 function App(): React.JSX.Element {
   return (
-    <SafeAreaView style={styles.container}>
-      <AppNavigator />
-    </SafeAreaView>
+    <View style={styles.container}>
+      <AuthProvider>
+        <AppNavigator />
+      </AuthProvider>
+    </View>
   );
 }
 

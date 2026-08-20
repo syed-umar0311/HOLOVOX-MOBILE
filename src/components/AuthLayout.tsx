@@ -88,8 +88,8 @@ const styles = StyleSheet.create({
     marginBottom: 4,
   },
   title: {
-    fontSize: 28,
-    fontWeight: '900',
+    fontSize: 20,
+    fontWeight: '600',
     textTransform: 'uppercase',
     color: colors.ink,
   },
