@@ -1,11 +1,12 @@
 import React from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Icon, type IconName } from '../Icon';
 import { colors } from '../../theme/colors';
 
 export interface TabItem {
   id: string;
   label: string;
-  icon: string;
+  icon: IconName;
 }
 
 export function BottomTabBar({
@@ -22,9 +23,9 @@ export function BottomTabBar({
       {tabs.map(tab => {
         const active = tab.id === activeTab;
         return (
-          <Pressable key={tab.id} style={styles.tab} onPress={() => onChange(tab.id)}>
+          <Pressable key={tab.id} style={styles.tab} onPress={() => onChange(tab.id)} hitSlop={6}>
             <View style={[styles.iconWrap, active && styles.iconWrapActive]}>
-              <Text style={styles.icon}>{tab.icon}</Text>
+              <Icon name={tab.icon} size={18} color={active ? colors.magenta : colors.inkMuted60} />
             </View>
             <Text style={[styles.label, active && styles.labelActive]}>{tab.label}</Text>
           </Pressable>
@@ -40,26 +41,24 @@ const styles = StyleSheet.create({
     borderTopWidth: 1,
     borderTopColor: colors.inkMuted10,
     backgroundColor: colors.canvas,
-    paddingTop: 6,
-    paddingBottom: 10,
+    paddingTop: 10,
+    paddingBottom: 14,
+    paddingHorizontal: 6,
   },
   tab: {
     flex: 1,
     alignItems: 'center',
-    gap: 4,
+    gap: 6,
   },
   iconWrap: {
-    width: 36,
-    height: 36,
-    borderRadius: 12,
+    width: 44,
+    height: 32,
+    borderRadius: 14,
     alignItems: 'center',
     justifyContent: 'center',
   },
   iconWrapActive: {
     backgroundColor: 'rgba(225, 29, 72, 0.1)',
-  },
-  icon: {
-    fontSize: 17,
   },
   label: {
     fontSize: 10,

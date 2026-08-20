@@ -46,7 +46,7 @@ export default function AccountScreen() {
           </Pressable>
         ))}
 
-        <Pressable style={styles.menuItem} onPress={signOut}>
+        <Pressable style={[styles.menuItem, styles.menuItemLast]} onPress={signOut}>
           <Text style={[styles.menuLabel, styles.signOutLabel]}>Sign out</Text>
         </Pressable>
       </View>
@@ -57,7 +57,8 @@ export default function AccountScreen() {
 const styles = StyleSheet.create({
   container: {
     padding: 20,
-    gap: 20,
+    paddingBottom: 40,
+    gap: 24,
   },
   profileCard: {
     alignItems: 'center',
@@ -118,9 +119,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingHorizontal: 18,
-    paddingVertical: 16,
+    paddingVertical: 17,
     borderBottomWidth: 1,
     borderBottomColor: colors.inkMuted10,
+  },
+  menuItemLast: {
+    borderBottomWidth: 0,
   },
   menuLabel: {
     fontSize: 14,

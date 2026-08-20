@@ -3,21 +3,22 @@ import { Pressable, SafeAreaView, StatusBar, StyleSheet, Text, View } from 'reac
 import { BottomTabBar, type TabItem } from '../../components/dashboard/BottomTabBar';
 import { BIDrawer } from '../../components/dashboard/BIDrawer';
 import { PlaceholderScreen } from '../../components/dashboard/PlaceholderScreen';
+import { Icon } from '../../components/Icon';
 import { useAuth } from '../../context/AuthContext';
 import { getBusinessIntelligenceItems } from '../../data/businessIntelligence';
 import { colors } from '../../theme/colors';
 import AccountScreen from './AccountScreen';
+import HomeScreen from './HomeScreen';
 
 const WORKSPACE_TABS: TabItem[] = [
-  { id: 'home', label: 'Home', icon: '⌂' },
-  { id: 'meetings', label: 'Meetings', icon: '⏵' },
-  { id: 'calendar', label: 'Calendar', icon: '▦' },
-  { id: 'chats', label: 'Chats', icon: '✉' },
-  { id: 'account', label: 'Account', icon: '●' },
+  { id: 'home', label: 'Home', icon: 'home' },
+  { id: 'meetings', label: 'Meetings', icon: 'meetings' },
+  { id: 'calendar', label: 'Calendar', icon: 'calendar' },
+  { id: 'chats', label: 'Chats', icon: 'chats' },
+  { id: 'account', label: 'Account', icon: 'account' },
 ];
 
 const SCREEN_COPY: Record<string, { title: string; description: string }> = {
-  home: { title: 'Home', description: 'Your workspace overview lands here.' },
   meetings: { title: 'Meetings', description: 'Scheduled and past meetings will show up here.' },
   calendar: { title: 'Calendar', description: 'Your connected calendar view is coming soon.' },
   chats: { title: 'Chats', description: 'Conversations with your team will appear here.' },
@@ -40,8 +41,8 @@ export default function DashboardScreen() {
       <StatusBar barStyle="dark-content" backgroundColor={colors.canvas} />
 
       <View style={styles.header}>
-        <Pressable style={styles.menuButton} onPress={() => setDrawerOpen(true)} hitSlop={8}>
-          <Text style={styles.menuIcon}>☰</Text>
+        <Pressable style={styles.menuButton} onPress={() => setDrawerOpen(true)} hitSlop={10}>
+          <Icon name="menu" size={18} color={colors.ink} />
         </Pressable>
         <Text style={styles.headerTitle}>HOLOVOX</Text>
         <View style={styles.menuButton} />
@@ -50,6 +51,8 @@ export default function DashboardScreen() {
       <View style={styles.content}>
         {activeTab === 'account' ? (
           <AccountScreen />
+        ) : activeTab === 'home' ? (
+          <HomeScreen />
         ) : (
           <PlaceholderScreen {...SCREEN_COPY[activeTab]} />
         )}
@@ -71,8 +74,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingHorizontal: 16,
-    paddingVertical: 12,
+    paddingHorizontal: 20,
+    paddingVertical: 16,
     borderBottomWidth: 1,
     borderBottomColor: colors.inkMuted10,
   },
@@ -82,14 +85,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  menuIcon: {
-    fontSize: 18,
-    color: colors.ink,
-  },
   headerTitle: {
-    fontSize: 16,
+    fontSize: 15,
     fontWeight: '900',
-    letterSpacing: 2,
+    letterSpacing: 3,
     color: colors.ink,
   },
   content: {

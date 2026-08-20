@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { Animated, Dimensions, Pressable, StyleSheet, Text, View } from 'react-native';
 import type { BusinessIntelligenceItem } from '../../data/businessIntelligence';
 import { InfinityLogo } from '../InfinityLogo';
+import { Icon } from '../Icon';
 import { colors } from '../../theme/colors';
 
 const DRAWER_WIDTH = Math.min(300, Dimensions.get('window').width * 0.8);
@@ -41,8 +42,13 @@ export function BIDrawer({
 
       <Animated.View style={[styles.drawer, { width: DRAWER_WIDTH, transform: [{ translateX }] }]}>
         <View style={styles.header}>
-          <InfinityLogo size={28} color="magenta" voidColor="ink" animated={false} />
-          <Text style={styles.title}>Business Intelligence</Text>
+          <View style={styles.headerLeft}>
+            <InfinityLogo size={26} color="magenta" voidColor="ink" animated={false} />
+            <Text style={styles.title}>Business{'\n'}Intelligence</Text>
+          </View>
+          <Pressable style={styles.closeButton} onPress={onClose} hitSlop={10}>
+            <Icon name="close" size={14} color={colors.inkMuted60} />
+          </Pressable>
         </View>
         <Text style={styles.subtitle}>Available on your current plan</Text>
 
@@ -84,10 +90,10 @@ const styles = StyleSheet.create({
   drawer: {
     height: '100%',
     backgroundColor: colors.card,
-    paddingTop: 56,
-    paddingHorizontal: 20,
-    borderTopRightRadius: 24,
-    borderBottomRightRadius: 24,
+    paddingTop: 60,
+    paddingHorizontal: 22,
+    borderTopRightRadius: 28,
+    borderBottomRightRadius: 28,
     shadowColor: colors.ink,
     shadowOffset: { width: 4, height: 0 },
     shadowOpacity: 0.15,
@@ -96,41 +102,57 @@ const styles = StyleSheet.create({
   },
   header: {
     flexDirection: 'row',
+    alignItems: 'flex-start',
+    justifyContent: 'space-between',
+  },
+  headerLeft: {
+    flexDirection: 'row',
     alignItems: 'center',
-    gap: 10,
+    gap: 12,
+    flexShrink: 1,
+  },
+  closeButton: {
+    width: 30,
+    height: 30,
+    borderRadius: 15,
+    backgroundColor: colors.inkMuted10,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   title: {
-    fontSize: 16,
+    fontSize: 15,
     fontWeight: '800',
     textTransform: 'uppercase',
+    lineHeight: 18,
     color: colors.ink,
     flexShrink: 1,
   },
   subtitle: {
-    fontSize: 11,
+    fontSize: 12,
     color: colors.inkMuted60,
-    marginTop: 6,
-    marginBottom: 20,
+    marginTop: 16,
+    marginBottom: 22,
   },
   list: {
-    gap: 10,
+    gap: 12,
   },
   item: {
-    borderRadius: 14,
+    borderRadius: 16,
     borderWidth: 1,
     borderColor: colors.inkMuted10,
-    padding: 14,
+    backgroundColor: colors.canvas,
+    padding: 16,
   },
   itemLabel: {
     fontSize: 14,
     fontWeight: '700',
     color: colors.ink,
-    marginBottom: 4,
+    marginBottom: 5,
   },
   itemDescription: {
-    fontSize: 11,
+    fontSize: 12,
     color: colors.inkMuted60,
-    lineHeight: 16,
+    lineHeight: 17,
   },
   empty: {
     fontSize: 12,
