@@ -7,23 +7,17 @@ import { AuthInput, PasswordInput } from '../../components/AuthInput';
 import { PrimaryButton } from '../../components/PrimaryButton';
 import { colors } from '../../theme/colors';
 
-export default function SignUpScreen({ onSwitchToSignIn }: { onSwitchToSignIn: () => void }) {
-  const [name, setName] = useState('');
+export default function SignInScreen({ onSwitchToSignUp }: { onSwitchToSignUp: () => void }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   return (
-    <AuthLayout title="Join HOLOVOX" onBack={onSwitchToSignIn}>
+    <AuthLayout title="Welcome back">
       <GoogleButton />
 
       <Divider label="or email" />
 
       <View style={styles.form}>
-        <AuthInput
-          placeholder="Full name"
-          value={name}
-          onChangeText={setName}
-        />
         <AuthInput
           placeholder="you@company.com"
           value={email}
@@ -37,13 +31,17 @@ export default function SignUpScreen({ onSwitchToSignIn }: { onSwitchToSignIn: (
           onChangeText={setPassword}
         />
 
-        <PrimaryButton label="Create account" />
+        <Pressable style={styles.forgotWrap} hitSlop={8}>
+          <Text style={styles.forgotLabel}>Forgot password?</Text>
+        </Pressable>
+
+        <PrimaryButton label="Sign in" />
       </View>
 
       <View style={styles.footer}>
-        <Text style={styles.footerText}>Already have an account? </Text>
-        <Pressable onPress={onSwitchToSignIn} hitSlop={8}>
-          <Text style={styles.footerLink}>Sign in</Text>
+        <Text style={styles.footerText}>New to HOLOVOX? </Text>
+        <Pressable onPress={onSwitchToSignUp} hitSlop={8}>
+          <Text style={styles.footerLink}>Create an account</Text>
         </Pressable>
       </View>
     </AuthLayout>
@@ -53,6 +51,14 @@ export default function SignUpScreen({ onSwitchToSignIn }: { onSwitchToSignIn: (
 const styles = StyleSheet.create({
   form: {
     gap: 12,
+  },
+  forgotWrap: {
+    alignSelf: 'flex-end',
+  },
+  forgotLabel: {
+    fontSize: 12,
+    fontWeight: '600',
+    color: colors.magenta,
   },
   footer: {
     flexDirection: 'row',

@@ -1,29 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!-- Actually exercised by code today: -->
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.CAMERA" /> <!-- LiveKit video, runtime-requested in CallRoomScreen -->
-    <uses-permission android:name="android.permission.RECORD_AUDIO" /> <!-- LiveKit audio, runtime-requested in CallRoomScreen -->
-    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" /> <!-- LiveKit AudioSession routing -->
-    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" /> <!-- LiveKit audio routing to BT headsets -->
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" /> <!-- screen share -->
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PROJECTION" /> <!-- screen share -->
-    <uses-permission android:name="android.permission.VIBRATE" /> <!-- KnockListener's Vibration.vibrate() cue -->
-
-    <!-- Declared ahead of the feature that will need them — add the corresponding
-         runtime request when each is actually wired up, don't rely on the manifest
-         entry alone (see CallRoomScreen's PermissionsAndroid.requestMultiple for the
-         pattern to follow):
-         - POST_NOTIFICATIONS: once push notifications are added
-         - READ_MEDIA_IMAGES / READ_MEDIA_VIDEO: once avatar upload / chat image
-           attachments get an image picker
-         - READ_CALENDAR / WRITE_CALENDAR: once "Add to calendar" writes to the device
-           calendar directly instead of via Linking/Share -->
-
-    <uses-feature android:name="android.hardware.camera" android:required="false" />
-    <uses-feature android:name="android.hardware.camera.autofocus" android:required="false" />
-    <uses-feature android:name="android.hardware.microphone" android:required="false" />
 
     <application
       android:name=".MainApplication"
@@ -32,7 +9,6 @@
       android:roundIcon="@mipmap/ic_launcher_round"
       android:allowBackup="false"
       android:theme="@style/AppTheme"
-      android:usesCleartextTraffic="${usesCleartextTraffic}"
       android:supportsRtl="true">
       <activity
         android:name=".MainActivity"
