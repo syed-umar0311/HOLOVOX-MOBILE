@@ -13,7 +13,15 @@ export type IconName =
   | 'check'
   | 'clock'
   | 'plus'
-  | 'users';
+  | 'users'
+  | 'lock'
+  | 'search'
+  | 'trash'
+  | 'chevronLeft'
+  | 'audio'
+  | 'screen'
+  | 'play'
+  | 'download';
 
 /**
  * Small filled-glyph icon set built entirely from Views (no icon font /
@@ -242,6 +250,159 @@ export function Icon({ name, size = 20, color = '#1E1B1B' }: { name: IconName; c
               }}
             />
           </View>
+        </View>
+      );
+
+    case 'lock':
+      return (
+        <View style={{ width: s, height: s, alignItems: 'center' }}>
+          <View style={{ width: s * 0.56, height: s * 0.32, overflow: 'hidden', alignItems: 'center' }}>
+            <View
+              style={{
+                width: s * 0.5,
+                height: s * 0.5,
+                borderRadius: s * 0.25,
+                borderWidth: Math.max(1.5, s * 0.1),
+                borderColor: color,
+              }}
+            />
+          </View>
+          <View style={{ width: s * 0.74, height: s * 0.42, borderRadius: s * 0.1, backgroundColor: color, marginTop: -1 }} />
+        </View>
+      );
+
+    case 'search':
+      return (
+        <View style={{ width: s, height: s }}>
+          <View
+            style={{
+              width: s * 0.66,
+              height: s * 0.66,
+              borderRadius: s * 0.33,
+              borderWidth: Math.max(1.5, s * 0.12),
+              borderColor: color,
+            }}
+          />
+          <View
+            style={{
+              position: 'absolute',
+              width: s * 0.32,
+              height: Math.max(1.5, s * 0.13),
+              borderRadius: 2,
+              backgroundColor: color,
+              right: 0,
+              bottom: s * 0.04,
+              transform: [{ rotate: '45deg' }],
+            }}
+          />
+        </View>
+      );
+
+    case 'trash':
+      return (
+        <View style={{ width: s, height: s, alignItems: 'center' }}>
+          <View style={{ width: s * 0.4, height: s * 0.1, backgroundColor: color, borderRadius: 2, marginBottom: s * 0.04 }} />
+          <View
+            style={{
+              width: s * 0.62,
+              height: s * 0.56,
+              borderBottomLeftRadius: s * 0.12,
+              borderBottomRightRadius: s * 0.12,
+              backgroundColor: color,
+              opacity: 0.85,
+            }}
+          />
+        </View>
+      );
+
+    case 'chevronLeft':
+      return (
+        <View style={{ width: s, height: s, alignItems: 'center', justifyContent: 'center' }}>
+          <View
+            style={{
+              width: s * 0.42,
+              height: Math.max(1.5, s * 0.14),
+              borderRadius: 2,
+              backgroundColor: color,
+              transform: [{ rotate: '45deg' }, { translateX: s * 0.14 }, { translateY: -s * 0.11 }],
+            }}
+          />
+          <View
+            style={{
+              width: s * 0.42,
+              height: Math.max(1.5, s * 0.14),
+              borderRadius: 2,
+              backgroundColor: color,
+              transform: [{ rotate: '-45deg' }, { translateX: s * 0.14 }, { translateY: s * 0.11 }],
+            }}
+          />
+        </View>
+      );
+
+    case 'audio':
+      return (
+        <View style={{ width: s, height: s, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: Math.max(1, s * 0.08) }}>
+          <View style={{ width: Math.max(1.5, s * 0.14), height: s * 0.45, borderRadius: 2, backgroundColor: color }} />
+          <View style={{ width: Math.max(1.5, s * 0.14), height: s * 0.8, borderRadius: 2, backgroundColor: color }} />
+          <View style={{ width: Math.max(1.5, s * 0.14), height: s * 0.55, borderRadius: 2, backgroundColor: color }} />
+          <View style={{ width: Math.max(1.5, s * 0.14), height: s * 0.32, borderRadius: 2, backgroundColor: color }} />
+        </View>
+      );
+
+    case 'screen':
+      return (
+        <View style={{ width: s, height: s, alignItems: 'center' }}>
+          <View
+            style={{
+              width: s,
+              height: s * 0.66,
+              borderRadius: s * 0.12,
+              borderWidth: Math.max(1.5, s * 0.09),
+              borderColor: color,
+            }}
+          />
+          <View style={{ width: s * 0.28, height: s * 0.14, backgroundColor: color, marginTop: -1 }} />
+          <View style={{ width: s * 0.5, height: Math.max(1.5, s * 0.08), borderRadius: 2, backgroundColor: color, marginTop: 1 }} />
+        </View>
+      );
+
+    case 'play':
+      return (
+        <View style={{ width: s, height: s, alignItems: 'center', justifyContent: 'center' }}>
+          <View
+            style={{
+              width: 0,
+              height: 0,
+              marginLeft: s * 0.1,
+              borderTopWidth: s * 0.35,
+              borderBottomWidth: s * 0.35,
+              borderLeftWidth: s * 0.5,
+              borderTopColor: 'transparent',
+              borderBottomColor: 'transparent',
+              borderLeftColor: color,
+            }}
+          />
+        </View>
+      );
+
+    case 'download':
+      return (
+        <View style={{ width: s, height: s, alignItems: 'center', justifyContent: 'center' }}>
+          <View style={{ width: Math.max(1.5, s * 0.14), height: s * 0.5, backgroundColor: color, borderRadius: 2 }} />
+          <View
+            style={{
+              width: 0,
+              height: 0,
+              marginTop: -1,
+              borderLeftWidth: s * 0.22,
+              borderRightWidth: s * 0.22,
+              borderTopWidth: s * 0.22,
+              borderLeftColor: 'transparent',
+              borderRightColor: 'transparent',
+              borderTopColor: color,
+            }}
+          />
+          <View style={{ width: s * 0.72, height: Math.max(1.5, s * 0.1), borderRadius: 2, backgroundColor: color, marginTop: s * 0.14 }} />
         </View>
       );
 

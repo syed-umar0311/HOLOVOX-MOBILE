@@ -9,6 +9,7 @@ import { getBusinessIntelligenceItems } from '../../data/businessIntelligence';
 import { colors } from '../../theme/colors';
 import AccountScreen from './AccountScreen';
 import HomeScreen from './HomeScreen';
+import MeetingsScreen from './MeetingsScreen';
 
 const WORKSPACE_TABS: TabItem[] = [
   { id: 'home', label: 'Home', icon: 'home' },
@@ -19,7 +20,6 @@ const WORKSPACE_TABS: TabItem[] = [
 ];
 
 const SCREEN_COPY: Record<string, { title: string; description: string }> = {
-  meetings: { title: 'Meetings', description: 'Scheduled and past meetings will show up here.' },
   calendar: { title: 'Calendar', description: 'Your connected calendar view is coming soon.' },
   chats: { title: 'Chats', description: 'Conversations with your team will appear here.' },
 };
@@ -53,6 +53,8 @@ export default function DashboardScreen() {
           <AccountScreen />
         ) : activeTab === 'home' ? (
           <HomeScreen />
+        ) : activeTab === 'meetings' ? (
+          <MeetingsScreen />
         ) : (
           <PlaceholderScreen {...SCREEN_COPY[activeTab]} />
         )}

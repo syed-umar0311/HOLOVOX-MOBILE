@@ -19,6 +19,10 @@ export function formatMeetingDateTime(date: Date): string {
   return `${MONTHS[date.getMonth()]} ${date.getDate()}, ${formatTime(date)}`;
 }
 
+export function formatShortDateTime(date: Date): string {
+  return `${MONTHS[date.getMonth()]} ${date.getDate()}, ${formatTime(date)}`;
+}
+
 export function formatTalkTime(totalMinutes: number): string {
   const hours = Math.floor(totalMinutes / 60);
   const minutes = totalMinutes % 60;
