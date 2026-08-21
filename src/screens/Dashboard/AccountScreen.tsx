@@ -1,6 +1,7 @@
 import React from 'react';
-import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, Switch, Text, View } from 'react-native';
 import { useAuth } from '../../context/AuthContext';
+import { useGlasses } from '../../context/GlassesContext';
 import { colors } from '../../theme/colors';
 
 const MENU_ITEMS = ['Plans & Upgrade', 'Profile', 'Settings'];
@@ -16,6 +17,7 @@ const PLAN_LABELS: Record<string, string> = {
 
 export default function AccountScreen() {
   const { session, signOut } = useAuth();
+  const { glassesMode, enableGlassesMode, disableGlassesMode, supported } = useGlasses();
   if (!session) return null;
 
   const initials = (session.name || session.email || 'U')
@@ -39,6 +41,22 @@ export default function AccountScreen() {
       </View>
 
       <View style={styles.menu}>
+        <View style={styles.menuItem}>
+          <View style={styles.glassesLabelWrap}>
+            <Text style={styles.menuLabel}>Glasses Mode</Text>
+            <Text style={styles.glassesSubLabel}>
+              {supported ? 'Connect and control your AR99 smart glasses' : 'Available on Android only'}
+            </Text>
+          </View>
+          <Switch
+            value={glassesMode}
+            onValueChange={next => (next ? enableGlassesMode() : disableGlassesMode())}
+            disabled={!supported}
+            trackColor={{ false: colors.inkMuted15, true: colors.magentaMuted }}
+            thumbColor={colors.card}
+          />
+        </View>
+
         {MENU_ITEMS.map(label => (
           <Pressable key={label} style={styles.menuItem}>
             <Text style={styles.menuLabel}>{label}</Text>
@@ -130,6 +148,15 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: '500',
     color: colors.ink,
+  },
+  glassesLabelWrap: {
+    flex: 1,
+    gap: 2,
+    paddingRight: 12,
+  },
+  glassesSubLabel: {
+    fontSize: 11,
+    color: colors.inkMuted60,
   },
   chevron: {
     fontSize: 16,

@@ -2,15 +2,17 @@ import React, { useMemo, useState } from 'react';
 import { Pressable, SafeAreaView, StatusBar, StyleSheet, Text, View } from 'react-native';
 import { BottomTabBar, type TabItem } from '../../components/dashboard/BottomTabBar';
 import { BIDrawer } from '../../components/dashboard/BIDrawer';
-import { PlaceholderScreen } from '../../components/dashboard/PlaceholderScreen';
 import { Icon } from '../../components/Icon';
 import { useAuth } from '../../context/AuthContext';
+import { useGlasses } from '../../context/GlassesContext';
 import { getBusinessIntelligenceItems } from '../../data/businessIntelligence';
 import { colors } from '../../theme/colors';
+import GlassesControlScreen from '../Glasses/GlassesControlScreen';
 import AccountScreen from './AccountScreen';
 import HomeScreen from './HomeScreen';
 import MeetingsScreen from './MeetingsScreen';
 import CalendarScreen from './CalendarScreen';
+import ChatScreen from './ChatScreen';
 
 const WORKSPACE_TABS: TabItem[] = [
   { id: 'home', label: 'Home', icon: 'home' },
@@ -20,12 +22,9 @@ const WORKSPACE_TABS: TabItem[] = [
   { id: 'account', label: 'Account', icon: 'account' },
 ];
 
-const SCREEN_COPY: Record<string, { title: string; description: string }> = {
-  chats: { title: 'Chats', description: 'Conversations with your team will appear here.' },
-};
-
 export default function DashboardScreen() {
   const { session } = useAuth();
+  const { glassesMode } = useGlasses();
   const [activeTab, setActiveTab] = useState('home');
   const [drawerOpen, setDrawerOpen] = useState(false);
 
@@ -35,6 +34,10 @@ export default function DashboardScreen() {
   );
 
   if (!session) return null;
+
+  if (glassesMode) {
+    return <GlassesControlScreen />;
+  }
 
   return (
     <SafeAreaView style={styles.container}>
@@ -58,7 +61,7 @@ export default function DashboardScreen() {
         ) : activeTab === 'calendar' ? (
           <CalendarScreen />
         ) : (
-          <PlaceholderScreen {...SCREEN_COPY[activeTab]} />
+          <ChatScreen />
         )}
       </View>
 

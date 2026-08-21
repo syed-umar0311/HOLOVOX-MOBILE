@@ -116,4 +116,8 @@ dependencies {
     } else {
         implementation jscFlavor
     }
+
+    // AR99 smart glasses SDK (SmartXY / ksdk) — BLE connection, protocol and display control.
+    implementation files('libs/ksdk-release.aar')
+    implementation 'com.google.protobuf:protobuf-javalite:3.18.1'
 }
